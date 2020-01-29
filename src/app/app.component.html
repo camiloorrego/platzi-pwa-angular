@@ -1,0 +1,45 @@
+<mat-toolbar>
+  <span>FirstRow</span>
+</mat-toolbar>
+
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Nota
+      </mat-panel-title>
+      <mat-panel-description>
+        Crea o edita una nota
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="Titulo" [(ngModel)]="nota.titulo">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categoría</mat-label>
+      <mat-select [(ngModel)]="nota.categoria">
+        <mat-option *ngFor="let cat of categories" [value]="cat">
+          {{cat}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Contenido" [(ngModel)]="nota.contenido"></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="save()">Guardar</button>
+  </mat-expansion-panel>
+
+  <mat-list>
+    <mat-list-item *ngFor="let i of notas" (click)="set(i)">
+      <h3 matLine> {{i.titulo}} </h3>
+      <p matLine> {{i.categoria}} </p>
+      <small matLine> {{i.contenido}} - {{i.id | date}} </small>
+    </mat-list-item>
+
+  </mat-list>
+</mat-accordion>
